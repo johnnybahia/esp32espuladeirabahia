@@ -1,0 +1,26 @@
+// ============================================================
+// VERSÃO ALTERNATIVA - SINAL INVERTIDO
+// Use se HIGH = PRODUZINDO e LOW = PARADO
+// ============================================================
+
+// Na linha 164, SUBSTITUA:
+bool estavaProduzindo = (estadoAtual[i] == LOW);
+
+// POR:
+bool estavaProduzindo = (estadoAtual[i] == HIGH);
+
+// ============================================================
+// COMO SABER SE PRECISA INVERTER:
+// ============================================================
+//
+// 1. Com máquina LIGADA e RODANDO:
+//    - Abra Serial Monitor
+//    - Se aparecer só "PARADA" → Precisa inverter
+//    - Se aparecer "PRODUZINDO" → Está correto
+//
+// 2. Teste:
+//    - Ligue máquina → aguarde 10s → desligue
+//    - Se enviar "TEMPO PARADA" → Inverter lógica
+//    - Se enviar "TEMPO PRODUZINDO" → Lógica correta
+//
+// ============================================================
