@@ -9,17 +9,35 @@ const char* ssid = "MARFIM_CEARA";
 const char* password = "marfimm0403";
 
 // SEU LINK DO GOOGLE SCRIPT (ATUALIZADO)
-String GoogleScriptURL = "https://script.google.com/macros/s/AKfycbyoMZd9g_A7IIgcCajQm71OZTEf6R4kMWQvJXy79C6W8MR24OH_Q2sQ9-uko1q9uvH8fg/exec"; 
+String GoogleScriptURL = "https://script.google.com/macros/s/AKfycbxQdLvIma_qjqCBI1qy9pj320xlOEcLHjtsa1DzotntVjoxpl81TWP62VHNdgqkTIr-/exec"; 
 
-// MÁQUINAS E PINOS
-const int qtdMaquinas = 4;
+// ============================================================
+// MÁQUINAS E PINOS GPIO DO ESP32
+// ============================================================
+// MAPEAMENTO DE CONEXÕES:
+//
+// Máquina                          | GPIO | Entrada Física
+// ---------------------------------|------|---------------
+// ESPULADEIRA LONGO 2 BOCAS 1      | 27   | Canal 1
+// ESPULADEIRA LONGO 2 BOCAS 2      | 26   | Canal 2
+// ESPULADEIRA TORRE 4 BOCAS        | 25   | Canal 3
+// ESPULADEIRA CHINESA 2 BOCAS 1    | 33   | Canal 4
+// ESPULADEIRA CHINESA 2 BOCAS 2    | 32   | Canal 5
+//
+// IMPORTANTE: Conectar o sinal de cada máquina no GPIO correspondente
+// Sinal LOW = Máquina PRODUZINDO
+// Sinal HIGH = Máquina PARADA
+// ============================================================
+
+const int qtdMaquinas = 5;
 String nomes[qtdMaquinas] = {
-  "ESPULADEIRA CHINESA 2 BOCAS", 
-  "ESPULADEIRA TORRE 2 BOCAS", 
-  "ESPULADEIRA TORRE 4 BOCAS", 
-  "ESPULADEIRA LONGO 2 BOCAS"
+  "ESPULADEIRA LONGO 2 BOCAS 1",      // GPIO 27
+  "ESPULADEIRA LONGO 2 BOCAS 2",      // GPIO 26
+  "ESPULADEIRA TORRE 4 BOCAS",        // GPIO 25
+  "ESPULADEIRA CHINESA 2 BOCAS 1",    // GPIO 33
+  "ESPULADEIRA CHINESA 2 BOCAS 2"     // GPIO 32
 };
-int pinos[qtdMaquinas] = {27, 26, 25, 33};
+int pinos[qtdMaquinas] = {27, 26, 25, 33, 32};
 
 // ============================================================
 // ESTRUTURAS PARA MULTITAREFA
