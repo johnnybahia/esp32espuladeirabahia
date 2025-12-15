@@ -41,27 +41,39 @@ function salvarDadosESP32(e) {
     var maquina = e.parameter.maquina;
     var evento = e.parameter.evento;
     var duracao = e.parameter.duracao;
-    
+
+    // ============================================================
+    // FILTRO: Bloquear registros de TESTE
+    // ============================================================
+    // Não grava na planilha se o nome da máquina contém "TESTE"
+    // Retorna OK para não quebrar os testes, mas não grava os dados
+    var maquinaUpper = String(maquina).toUpperCase();
+    if (maquinaUpper.indexOf("TESTE") > -1) {
+      console.log("⚠️ Registro de TESTE bloqueado: " + maquina);
+      return ContentService.createTextOutput("OK");
+    }
+    // ============================================================
+
     var ss = getSS();
     var sheet = ss.getSheetByName("Página1");
     if (!sheet) sheet = ss.getActiveSheet();
-    
+
     var dataAtual = new Date();
     var timezone = Session.getScriptTimeZone();
     var dataStr = Utilities.formatDate(dataAtual, timezone, "dd/MM/yyyy");
     var horaStr = Utilities.formatDate(dataAtual, timezone, "HH:mm:ss");
-    
+
     sheet.appendRow([dataStr, horaStr, maquina, evento, duracao]);
-    
+
     // O cálculo pesado (gerarRelatorioTurnos) foi removido daqui para não travar o ESP32.
     // Ele deve rodar via TRIGGER (Acionador) a cada 1 minuto.
-    
+
     return ContentService.createTextOutput("OK");
-    
+
   } catch (error) {
     return ContentService.createTextOutput("ERROR");
   } finally {
-    lock.releaseLock(); 
+    lock.releaseLock();
   }
 }
 

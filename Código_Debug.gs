@@ -41,6 +41,16 @@ function salvarDadosESP32(e) {
 
     Logger.log("Recebido - Máquina: " + maquina + " | Evento: " + evento + " | Duração: " + duracao);
 
+    // ============================================================
+    // FILTRO: Bloquear registros de TESTE
+    // ============================================================
+    var maquinaUpper = String(maquina).toUpperCase();
+    if (maquinaUpper.indexOf("TESTE") > -1) {
+      Logger.log("⚠️ Registro de TESTE bloqueado: " + maquina);
+      return ContentService.createTextOutput("OK");
+    }
+    // ============================================================
+
     var ss = getSS();
     if (!ss) {
       Logger.log("ERRO: Planilha não encontrada");
