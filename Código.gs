@@ -2,8 +2,8 @@
 // CONFIGURAÇÃO GLOBAL
 // ==========================================================
 
-// ID DA PLANILHA
-const ID_PLANILHA = "1jApQbNfM7gUyIL9b3I0CuEFePlnr2DMKeuARCIjrq7g";
+// ID DA PLANILHA - MARFIM BAHIA (ATUALIZADO)
+const ID_PLANILHA = "1f2XTPxMZUQIDXEEYfxQSLyWRVQDnGs4sccT3FrdDcW4";
 
 // Função auxiliar para pegar a planilha correta (pelo ID ou ativa)
 function getSS() {
